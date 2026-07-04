@@ -2,7 +2,7 @@ package homework;
 
 import java.util.Scanner;
 
-public class code4 {
+public class code4customized {
     private Scanner sc = new Scanner(System.in);
     private String content = "";
     private String font = "宋体";
@@ -12,16 +12,23 @@ public class code4 {
     void advanced() {
         System.out.println("1.字数统计 2.自定义格式");
         switch (sc.nextLine().trim()) {
-            case "1": stats(); break;
+            case "1": stats(content); break;
             case "2": customize(); break;
             default: System.out.println("无效");
         }
     }
 
-    void stats() {
-        int chars = content.length();
-        int words = content.trim().isEmpty() ? 0 : content.split("[\\s\\p{Punct}]+").length;
-        int cn = 0; for (char c : content.toCharArray()) if (c>=0x4E00 && c<=0x9FA5) cn++;
+    void stats(String input) {
+        if (input == null || input.isEmpty()) {
+            System.out.println("请先读取文档");
+            return;
+        }
+        int chars = input.length();
+        int words = input.trim().isEmpty() ? 0 : input.split("[\\s\\p{Punct}]+").length;
+        int cn = 0; 
+        for (char c : input.toCharArray()) {
+            if (c>=0x4E00 && c<=0x9FA5) cn++;
+        }
         System.out.println("字符数:"+chars+"  单词数:"+words+"  中文字符:"+cn);
     }
 

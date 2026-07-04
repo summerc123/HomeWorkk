@@ -1,13 +1,17 @@
 package homework;
 
-public class code3 {
+public class code3line {
     private String content = "";
 
-    void format() {
-        if (content.isEmpty()) { System.out.println("请先读取文档"); return; }
-        content = clean(content);
+    String format(String input) {
+        if (input == null || input.isEmpty()) { 
+            System.out.println("请先读取文档"); 
+            return "";
+        }
+        content = clean(input);
         System.out.println("排版完成（已清理多余空格/空行）");
         preview();
+        return content;
     }
 
     String clean(String s) {
